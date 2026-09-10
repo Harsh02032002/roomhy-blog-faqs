@@ -7,6 +7,7 @@ import {
   BadgeCheck,
   BedDouble,
   Building2,
+  CalendarDays,
   CalendarCheck2,
   Check,
   CheckCircle2,
@@ -16,9 +17,15 @@ import {
   Home,
   House,
   Armchair,
+  FileText,
+  IndianRupee,
   LockKeyhole,
   MapPin,
   Menu,
+  MessageCircleMore,
+  Phone,
+  Plus,
+  Repeat2,
   Search,
   ShieldCheck,
   Star,
@@ -42,6 +49,10 @@ import delhiAsset from "@/assets/city-delhi.jpg.asset.json";
 import indoreAsset from "@/assets/city-indore.jpg.asset.json";
 import bhopalAsset from "@/assets/city-bhopal.jpg.asset.json";
 import sikarAsset from "@/assets/city-sikar.jpg.asset.json";
+import blogPerfectPgAsset from "@/assets/blog-perfect-pg.jpg.asset.json";
+import blogSmartBiddingAsset from "@/assets/blog-smart-bidding.jpg.asset.json";
+import blogLivingGuideAsset from "@/assets/blog-living-guide.jpg.asset.json";
+import blogBudgetAsset from "@/assets/blog-budget.jpg.asset.json";
 import { Button } from "@/components/ui/button";
 
 const heroImage = heroAsset.url;
@@ -132,6 +143,26 @@ const reviews = [
   { name: "Anjali Mehta", role: "IT Professional, Indore", quote: "Love the variety of options. Co-living spaces are amazing and budget friendly.", tone: "peach" },
   { name: "Karan Verma", role: "Student, Delhi University", quote: "Extremely easy to search and compare PGs. Got an instant discount through bidding!", tone: "rose" },
 ];
+
+const blogPosts = [
+  { category: "TIPS", date: "Sep 2, 2025", readTime: "5 min read", title: "7 Tips to Find the Perfect PG in Kota", image: blogPerfectPgAsset.url },
+  { category: "SAVINGS", date: "Aug 28, 2025", readTime: "6 min read", title: "How Smart Bidding Saves You ₹10,000+ Every Academic Year", image: blogSmartBiddingAsset.url },
+  { category: "GUIDE", date: "Aug 20, 2025", readTime: "5 min read", title: "PG vs Hostel vs Co-living – Which is Right for You?", image: blogLivingGuideAsset.url },
+  { category: "BUDGET", date: "Aug 14, 2025", readTime: "4 min read", title: "How to Save Money While Living Away From Home", image: blogBudgetAsset.url },
+];
+
+const faqs = [
+  { question: "How does Smart Bidding work?", answer: "Choose a verified property, submit the monthly rent you are comfortable with, and the owner can accept or respond with their best available offer.", icon: MessageCircleMore, tone: "mint" },
+  { question: "How can I contact the property owner?", answer: "Once you select a property, Roomhy lets you connect directly with its verified owner through the contact options on the listing.", icon: Phone, tone: "sage" },
+  { question: "Is the property verified?", answer: "Yes. Properties marked as verified have been checked by the Roomhy team for listing details, location, amenities, and owner information.", icon: ShieldCheck, tone: "green" },
+  { question: "Can I visit the property before booking?", answer: "Yes. You can request a visit at a convenient time and inspect the room and amenities before confirming your booking.", icon: CalendarDays, tone: "rose" },
+  { question: "What documents are required to book?", answer: "A valid photo ID and basic student or employment details are generally required. The owner will confirm any property-specific documents.", icon: FileText, tone: "mint" },
+  { question: "Can I get a refund if I cancel?", answer: "Refund eligibility depends on the property's cancellation terms. The applicable policy is shown before you complete your booking.", icon: IndianRupee, tone: "gold" },
+  { question: "Can I change my room after booking?", answer: "Room changes may be possible if another room is available. Contact Roomhy support or the property owner to review your options.", icon: Repeat2, tone: "aqua" },
+  { question: "Is Roomhy safe for girls?", answer: "Roomhy offers verified women-only and secure accommodation options with clear amenity and safety information to help you choose confidently.", icon: Users, tone: "gold" },
+];
+
+const popularSearches = ["PG in Kota", "PG in Jaipur", "PG in Delhi", "Hostels in Kota", "Hostels in Jaipur", "Hostels in Delhi", "Co-living in Bangalore", "Co-living in Pune"];
 
 function Brand() {
   return <a className="brand" href="#top" aria-label="ROOMHY home">ROOMHY<span>.com</span></a>;
@@ -379,6 +410,77 @@ function StudentsSay() {
   );
 }
 
+function LatestBlog() {
+  return (
+    <section id="blog" className="latest-blog" aria-labelledby="blog-title">
+      <LeafSpray className="blog-leaves blog-leaves-left" /><LeafSpray className="blog-leaves blog-leaves-right" />
+      <p className="blog-note-left">Stay<br />Informed<br />Stay<br />Ahead ♡</p>
+      <p className="blog-note-right">Better<br />Choices<br />Brighter<br />Futures ♡</p>
+      <div className="editorial-heading">
+        <p className="section-eyebrow">Insights for a Brighter Tomorrow</p>
+        <h2 id="blog-title">Latest from Our Blog</h2>
+        <span>Tips, guides and stories to make your student living journey easier.</span>
+      </div>
+      <Button variant="outline" className="editorial-view-all">View all blogs <ArrowRight /></Button>
+      <div className="blog-grid">
+        {blogPosts.map((post) => (
+          <article className="blog-card" key={post.title}>
+            <div className="blog-image-wrap">
+              <img src={post.image} alt="" width={1024} height={640} loading="lazy" />
+              <span className="blog-category">{post.category}</span>
+            </div>
+            <div className="blog-body">
+              <p className="blog-meta"><CalendarDays /> {post.date} <i /> {post.readTime}</p>
+              <h3>{post.title}</h3>
+              <a href="#blog" aria-label={`Read ${post.title}`}><ArrowRight /></a>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function FrequentlyAskedQuestions() {
+  const [openFaq, setOpenFaq] = useState<string | null>(null);
+  return (
+    <section id="faq" className="faq" aria-labelledby="faq-title">
+      <LeafSpray className="faq-leaves faq-leaves-left" /><LeafSpray className="faq-leaves faq-leaves-right" />
+      <p className="faq-note">Your<br />Questions<br />Our Support<br />Always ♡</p>
+      <div className="editorial-heading faq-heading">
+        <p className="section-eyebrow">Quick Answers, Clearer Decisions</p>
+        <h2 id="faq-title">Frequently Asked Questions</h2>
+        <span>Everything you need to know before you book.</span>
+      </div>
+      <Button variant="outline" className="editorial-view-all faq-view-all">View all FAQs <ArrowRight /></Button>
+      <div className="faq-grid">
+        {[faqs.slice(0, 4), faqs.slice(4)].map((column, columnIndex) => (
+          <div className="faq-column" key={columnIndex}>
+            {column.map(({ question, answer, icon: Icon, tone }) => {
+              const isOpen = openFaq === question;
+              return (
+                <article className={isOpen ? "faq-item open" : "faq-item"} key={question}>
+                  <Button variant="ghost" className="faq-trigger" onClick={() => setOpenFaq(isOpen ? null : question)} aria-expanded={isOpen}>
+                    <span className={`faq-icon ${tone}`}><Icon /></span><span className="faq-question">{question}</span><Plus className="faq-plus" />
+                  </Button>
+                  <div className="faq-answer" aria-hidden={!isOpen}><p>{answer}</p></div>
+                </article>
+              );
+            })}
+          </div>
+        ))}
+      </div>
+      <div className="popular-searches">
+        <span className="popular-icon"><Search /></span>
+        <div className="popular-copy"><strong>Popular Searches</strong><small>Quick links to find what you're looking for.</small></div>
+        <div className="search-chips" aria-label="Popular accommodation searches">
+          {popularSearches.map((search) => <a href="#top" key={search}>{search}</a>)}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function Index() {
-  return <main><Header /><Hero /><Offers /><BrowseCities /><WhyChoose /><Trending /><SmartSavings /><StudentsSay /></main>;
+  return <main><Header /><Hero /><Offers /><BrowseCities /><WhyChoose /><Trending /><SmartSavings /><StudentsSay /><LatestBlog /><FrequentlyAskedQuestions /></main>;
 }

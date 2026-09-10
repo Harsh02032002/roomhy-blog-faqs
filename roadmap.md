@@ -6,3 +6,5 @@
 - [x] Replace the incorrect process section with Browse by Cities and Why Choose Roomhy
 - [x] Add Trending Stays This Week from the reference
 - [x] Verify desktop and mobile rendering against the supplied screenshots
+- [x] Add Latest from Our Blog with four responsive editorial cards
+- [x] Add interactive FAQ and responsive Popular Searches continuation
